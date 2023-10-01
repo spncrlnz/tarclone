@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Maps API Example</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+
+        function initMap() {
+            let pLat, pLng;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    pLat = position.coords.latitude;
+                    pLng = position.coords.longitude;
+
+                    let origin = { lat: pLat, lng: pLng };
+                    let destination = { lat: 7.075429, lng: 125.546361 };
+                    console.log("🚀 ~ file: apitest.html:31 ~ initMap ~ origin:", origin)
+                    console.log("🚀 ~ file: apitest.html:32 ~ initMap ~ destination:", destination)
+
+
+                    const map = new google.maps.Map(document.getElementById("map"));
+
+                    const directionsService = new google.maps.DirectionsService();
+                    const directionsRenderer = new google.maps.DirectionsRenderer();
+                    directionsRenderer.setMap(map);
+
+                    const request = {
+                        origin: new google.maps.LatLng(origin.lat, origin.lng),
+                        destination: new google.maps.LatLng(destination.lat, destination.lng),
+                        travelMode: google.maps.TravelMode.DRIVING,
+                    };
+
+                    directionsService.route(request, (result, status) => {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsRenderer.setDirections(result);
+
+                            const distance = result.routes[0].legs[0].distance.text;
+                            const time = result.routes[0].legs[0].duration.text;
+
+                            console.log("Distance: " + distance);
+                            console.log("Time: " + time);
+                        } else {
+                            console.error("Directions request failed: " + status);
+                        }
+                    });
+                });
+            } else {
+                alert('Your browser does not support geolocation.');
+            }
+        }
+
+        /*
+        function getDateAndTime() {
+        let currentDate = new Date();
+        let formattedDate = currentDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        separator: '-'
+        });
+        let formattedTime = currentDate.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        });
+        return [formattedDate, formattedTime];
+        }
+        */
+
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6hj0M-1n_cRYO38_5m0Al2hSPAxIHJk4&callback=initMap"></script>
+</body>
+
+</html>

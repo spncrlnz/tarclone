@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T.A.R. | Dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/main/app-dark.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+</head>
+
+<body class="theme-light">
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active" style="box-shadow: 0px 0px 40px rgb(237, 237, 237);">
+                <div class="sidebar-header position-relative">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="appr-shopowner.html"><img src="assets/logo.png"
+                                    style="width: auto; height: 80px; max-height: 120px;" alt="Logo"
+                                    srcset="">&nbsp;T.A.R.</a>
+                        </div>
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                            <svg hidden xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
+                                height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
+                                <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2"
+                                        opacity=".3"></path>
+                                    <g transform="translate(-210 -1)">
+                                        <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+                                        <circle cx="220.5" cy="11.5" r="4"></circle>
+                                        <path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <div class="form-check form-switch fs-6" hidden>
+                                <input class="form-check-input  me-0" type="checkbox" id="toggle-dark">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <svg hidden xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--mdi" width="20" height="20"
+                                preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="sidebar-toggler  x">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <hr />
+                        <li class="sidebar-title">Approved</li>
+
+                        <li class="sidebar-item ">
+                            <a href="appr-shopowner.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Shop Owner</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ">
+                            <a href="appr-mechanic.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Mechanic</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ">
+                            <a href="appr-customer.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Customer</span>
+                            </a>
+                        </li>
+
+                        <hr />
+
+                        <li class="sidebar-title">Pending Approval</li>
+
+                        <li class="sidebar-item active">
+                            <a href="pend-shopowner.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Shop Owner</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ">
+                            <a href="pend-mechanic.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Mechanic</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item ">
+                            <a href="pend-customer.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Customer</span>
+                            </a>
+                        </li>
+                        <hr />
+                        <li class="sidebar-item ">
+                            <a href="reports.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                        <hr />
+                        <li class="sidebar-item ">
+                            <a href="#" onclick="signout()" class='sidebar-link'>
+                                <i class="bi bi-arrow-left"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Pending Shop Owner</h3>
+                        </div>
+                    </div>
+                </div>
+                <section class="section mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive p-0">
+                                <table class="table table-bordered align-items-center mb-0">
+                                    <thead>
+                                        <tr class="text-uppercase text-nowrap text-xxs font-weight-bolder ps-2">
+                                            <th>
+                                                FULL NAME</th>
+                                            <th>
+                                                EMAIL
+                                            </th>
+                                            <th>
+                                                NUMBER
+                                            </th>
+                                            <th>
+                                                REQUEST
+                                            </th>
+                                            <th>
+                                                Document
+                                            </th>
+                                            <th>
+                                                Location
+                                            </th>
+                                            <th>
+                                                Email Status
+                                            </th>
+                                            <th>
+                                                Reject
+                                            </th>
+                                            <th>
+                                                Approve
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-content">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalDocument" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="docs"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="js/config.js"></script>
+    <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        var db = firebase.database();
+        // db.ref("users").child("KiUj0i7BW0RHo4etj11YECW7Azu2").once("value", function (s) {
+        //     var val = s.val();
+        //     $("#img1").attr("src", val.img1)
+        // })
+        $(document).ready(function () {
+            getData();
+        });
+
+        function getData() {
+            db.ref("users").orderByChild("userType").equalTo("shopowner").on('value', function (snapshot) {
+                if (snapshot.exists()) {
+                    var content = '';
+                    $('#table-content').empty();
+                    snapshot.forEach(function (data) {
+                        var val = data.val();
+                        if (val.verify == 0) {
+                            content += `<tr>`;
+                            if (val.fullname) {
+                                content += '<td class="text-nowrap">' + val.fullname + '</td>';
+                            } else {
+                                content += '<td> - </td>';
+                            }
+
+                            if (val.email) {
+                                content += '<td class="text-nowrap">' + val.email + '</td>';
+                            } else {
+                                content += '<td> - </td>';
+                            }
+
+                            if (val.number) {
+                                content += '<td class="text-nowrap">' + val.number + '</td>';
+                            } else {
+                                content += '<td> - </td>';
+                            }
+
+                            if (val.request) {
+                                content += '<td class="text-nowrap">' + val.request + '</td>';
+                            } else {
+                                content += '<td> - </td>';
+                            }
+
+                            if (val.emailVerify == 1) {
+                                content += `<td>
+                                                <button class="btn btn-primary btn-block" onclick="openDocument('${val.uid}')">View</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary btn-block" onclick="openMap('${val.uid}')">Location</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge rounded-pill text-bg-success">Verified</span>
+                                                </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-block" onclick="userStatusUpdate('${val.uid}', '2')">Reject</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-block" onclick="userStatusUpdate('${val.uid}', '1')">Approve</button>
+                                            </td>`;
+                            } else if (val.emailVerify == 0) {
+                                content += `
+                                            <td>
+                                                <button class="btn btn-primary btn-block" onclick="openDocument('${val.uid}')">View</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary btn-block" onclick="openMap('${val.uid}')">Location</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge rounded-pill text-bg-danger">Not Verified</span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-block" onclick="userStatusUpdate('${val.uid}', '2')">Reject</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-block" onclick="userStatusUpdate('${val.uid}', '1')" disabled>Approve</button>
+                                            </td>`;
+                            }
+                            content += '</tr>';
+                        }
+                    })
+                    $('#table-content').append(content);
+                    $("#table-content").each(function (elem, index) {
+                        var arr = $.makeArray($("tr", this).detach());
+                        arr.reverse();
+                        $(this).append(arr);
+                    })
+                }
+                checkTable();
+            })
+        };
+
+
+        function checkTable() {
+            let table = document.getElementById("table-content");
+            if (table.rows.length == 0) {
+                $('#table-content').empty();
+                $("#table-content").append(`<h6 class="text-danger mt-5 text-nowrap">No data found.</h6>`);
+            }
+        }
+
+
+        async function userStatusUpdate(uid, status) {
+            var message, ques, btn;
+            if (status == 1) {
+                ques = "APPROVE User?";
+                btn = "Approve";
+                message = "User Approved!";
+            } else {
+                ques = "REJECT User?";
+                btn = "Reject";
+                message = "User Rejected!";
+            }
+
+            Swal.fire({
+                title: ques,
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: btn,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var [strDate, strTime] = getDateAndTime()
+                    var dateUpdate = `${strDate} ${strTime}`;
+                    db.ref("users").child(uid).update({ verify: status, dateUpdate: dateUpdate });
+                    Swal.fire(message, '', 'success')
+                }
+            })
+        }
+
+        async function openMap(uid) {
+            $("#docs").empty();
+            await db.ref("users").child(uid).once("value", function (s) {
+                var val = s.val();
+                var content = ``;
+                console.log(val.location)
+                content += `
+                        <h4>Shop Location</h4>
+                        <iframe src="https://maps.google.com/maps?q=${val.location}&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                        `;
+
+                $("#docs").append(content);
+            })
+            $("#modalDocument").modal("show");
+        }
+
+
+        async function openDocument(uid) {
+            $("#docs").empty();
+            Swal.fire({
+                icon: 'info',
+                title: 'Warning! The document you are about to view is Confidential. Make sure it is Secure and only used for System User Authentication.',
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: 'Okay',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    db.ref("users").child(uid).once("value", function (s) {
+                        var val = s.val();
+                        var content = ``;
+
+                        if (val.userType == "customer") {
+                            content += `
+                            <h4>Valid ID</h4>
+                            <img  src="${val.img1}" alt="" class="img-fluid border" style="width: 100%; max-height: auto;">
+                            `;
+                        } else {
+                            content += `
+                            <h4>Valid ID</h4>
+                            <img  src="${val.img1}" alt="" class="img-fluid border" style="width: 100%; max-height: auto;">
+                            <h4 class="mt-5">Permit</h4>
+                            <img  src="${val.img2}" alt="" class="img-fluid border" style="width: 100%; max-height: auto;">
+                            `;
+                        }
+
+                        $("#docs").append(content);
+                        $("#modalDocument").modal("show");
+
+                    })
+                }
+            })
+        }
+
+        function getDateAndTime() {
+            let currentDate = new Date();
+            let formattedDate = currentDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                separator: '-'
+            });
+            let formattedTime = currentDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            });
+            return [formattedDate, formattedTime];
+        }
+    </script>
+</body>
+
+</html>

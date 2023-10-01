@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T.A.R. | Log-In</title>
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/pages/auth.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css">
+</head>
+
+<style>
+    .btn-loading {
+        pointer-events: none;
+    }
+
+    .btn-loading:after {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin: -0.25em 0 0 0.25em;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spinner 1s linear infinite;
+    }
+
+    @keyframes spinner {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div id="auth">
+        <div class="row h-100">
+            <div class="col-lg-5 col-12">
+                <div id="auth-left" class="text-center">
+                    <a href="index.html"><img src="assets/logo.png" alt="Logo" class="mb-3 mt-0"style="width: auto; max-height: 120px;"></a>
+                    <h1>Tap & Repair</h1>
+                    <p class="auth-subtitle mb-3">Log-In Using Your Credentials</p>
+
+                    <form>
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_email" type="text" class="form-control form-control-xl" placeholder="Email">
+                            <div class="form-control-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_password" type="password" class="form-control form-control-xl" placeholder="Password">
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <button id="btnLogin" class="btn btn-success btn-block btn-lg shadow-lg mb-3" onclick="login()">Log-In</button>
+                    <hr>
+                    <h6>No Account Yet?</h6>
+                    <button class="btn btn-primary btn-block btn-lg shadow-lg" onclick="location.href='register.html'">Register</button>
+                    <!-- <hr>
+                    <button class="btn btn-primary btn-block btn-lg shadow-lg fw-bold btn icon icon-left"
+                        onclick="downloadApp()">
+                        <i class="bi bi-download px-2"></i>
+                        Download App</button> -->
+                </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+
+    <!--Configure JS Page // JS Connection using Firebase Inputs-->
+    <script src="js/config.js"></script>
+    
+    <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+    <script>
+        var db = firebase.database();
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                var uid = user.uid;
+                searchUser(uid);
+            }
+        });
+
+        $(document).ready(function () {
+            document.addEventListener("keyup", function (event) {
+                if (event.code === 'Enter') {
+                    login();
+                }
+            });
+        });
+
+        function searchUser(uid) {
+
+            db.ref("users").child(uid).once("value", function (s) {
+                var val = s.val();
+                if (val.verify == 0) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: `Log-In Invalid. Your Account has not been reviewed by an Admin yet. Please wait for a moment.`,
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'Okay',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $("#in_password").val("");
+                            $("#btnLogin").removeClass("btn-loading").text("Login");
+                        }
+                    })
+                } else if (val.verify == 2) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: `Account Terminated/Rejected!`,
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'Okay',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $("#in_password").val("");
+                            $("#btnLogin").removeClass("btn-loading").text("Login");
+                        }
+                    })
+                } else if (val.verify == 1) {
+                    location.href = `db-${val.userType}.html`;
+                }
+            })
+        }
+
+        async function login() {
+            var sign_email = document.getElementById("in_email").value;
+            var sign_password = document.getElementById("in_password").value;
+
+            if (sign_email && sign_password) {
+                $("#btnLogin").addClass("btn-loading").text("");
+                firebase.auth().signInWithEmailAndPassword(sign_email, sign_password)
+                    .then((userCredential) => {
+                        var user = userCredential.user;
+
+                        if (sign_email == "admin@admin.com") {
+                            window.location.href = "appr-shopowner.html";
+                        } else {
+                            if (user.emailVerified) {
+                                var user = userCredential.user;
+                                var uid = user.uid;
+                                db.ref("users").child(uid).update({ emailVerify: 1 });
+                                searchUser(uid);
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: `You Failed to Verify your EMail.`,
+                                    text: 'Please Check Your Inbox.',
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'Okay',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $("#in_password").val("");
+                                        $("#btnLogin").removeClass("btn-loading").text("Login");
+                                    }
+                                })
+                            }
+                        }
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log("🚀 ~ file: login.html:184 ~ login ~ errorMessage:", errorMessage)
+                        $("#btnLogin").removeClass("btn-loading").text("Login");
+                        Swal.fire({
+                            icon: 'error',
+                            title: `Login error`,
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: 'Okay',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#in_password").val("");
+                                $("#btnLogin").removeClass("btn-loading").text("Login");
+                            }
+                        })
+                    });
+            }
+        }
+
+        function downloadApp() {
+            location.href = "https://firebasestorage.googleapis.com/v0/b/tapandrepair-online.appspot.com/o/app%2FTAR_v1.apk?alt=media&token=00167fd3-9146-4ff4-a4cf-bcf2b4a981b8";
+        }
+    </script>
+
+</body>
+
+
+</html>

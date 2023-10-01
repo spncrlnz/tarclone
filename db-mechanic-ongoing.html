@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAR | dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/main/app-dark.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+</head>
+<style>
+    #userMap {
+        height: 400px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body class="theme-light">
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active" style="box-shadow: 0px 0px 40px rgb(237, 237, 237);">
+                <div class="sidebar-header position-relative">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="appr-shopowner.html"><img src="assets/logo.png"
+                                    style="width: auto; height: 80px; max-height: 120px;" alt="Logo"
+                                    srcset="">&nbsp;TAR</a>
+                        </div>
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                            <svg hidden xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
+                                height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
+                                <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2"
+                                        opacity=".3"></path>
+                                    <g transform="translate(-210 -1)">
+                                        <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+                                        <circle cx="220.5" cy="11.5" r="4"></circle>
+                                        <path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <div class="form-check form-switch fs-6" hidden>
+                                <input class="form-check-input  me-0" type="checkbox" id="toggle-dark">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <svg hidden xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--mdi" width="20" height="20"
+                                preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="sidebar-toggler  x">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <hr />
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item active">
+                            <a href="db-shopowner-ongoing.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3 class="mb-0">Mechanic</h3>
+                            <h6 class="mt-0" id="shopName">-</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="section mt-3">
+
+                    <div id="jobs"></div>
+                    <div id="messages"></div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Send a Report</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="userUID" hidden></p>
+                    <p class="mb-0 mt-0 pb-0">Customer Name:</p>
+                    <h6 id="customerName"></h6>
+                    <div class="form-floating mt-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="complaintDetails"
+                            style="height: 100px"></textarea>
+                        <label for="complaintDetails">Report Details</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReport()">Submit Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalJobDone" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Job Finished</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div id="userUID2" hidden></div>
+                </div>
+                <div class="modal-body" id="customerData">
+                </div>
+                <div class="modal-footer" id="modalJobDoneFooter">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="jobDonePaid()">Request Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLoadOnly" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Please wait</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mt-3"><img src="assets/images/svg-loaders/puff.svg" class="mx-auto"
+                            style="width: 7rem" alt="audio"></div>
+                    <h6 class="text-danger text-center mt-2">Requesting Payment to Customer</h6>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="js/config.js"></script>
+    <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        // 1 - accept
+        // 2 - reject
+        // 3 - confirm arrival
+        // 4 - job done
+
+        var uid, userType, lastSeenIntervalId, coord, userName, serviceType, currentRating;
+        var shopUID, customerUID;
+        let servicesWithFare;
+        let cardContent;
+
+        var db = firebase.database();
+        $(document).ready(function () {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    uid = user.uid;
+                    shopUID = uid;
+                    db.ref("users").child(uid).on("value", function (s) {
+                        let val = s.val();
+
+
+                        $("#shopName").text(val.fullname);
+                        userType = val.userType;
+                        coord = val.location;
+                        userName = val.fullname;
+                        serviceType = val.serviceType;
+                    })
+
+                    let dataKey;
+
+
+                    let key, acceptStatus;
+                    let originLoc, destinationLoc;
+                    db.ref("requestHire").orderByChild("shopUID").equalTo(shopUID).limitToFirst(1).on("value", function (s) {
+                        let flag = 0;
+                        if (s.exists()) {
+                            $("#jobs").empty();
+                            let content = ``;
+                            s.forEach(function (data) {
+                                let val = data.val();
+                                if (val.accept == 1 || val.accept == 3) {
+                                    key = data.key;
+                                    dataKey = key;
+
+                                    customerUID = key;
+                                    flag = 1;
+                                    let a = val.data_userLocation;
+                                    let b = val.data_shopLocation;
+
+                                    let coordSplitA = a.split(',');
+                                    originLoc = {
+                                        lat: parseFloat(coordSplitA[0]),
+                                        lng: parseFloat(coordSplitA[1])
+                                    }
+
+                                    let coordSplitB = b.split(',');
+                                    destinationLoc = {
+                                        lat: parseFloat(coordSplitB[0]),
+                                        lng: parseFloat(coordSplitB[1])
+                                    }
+
+                                    services = val.data_serviceType;
+                                    var dataArray1 = services.split(", ");
+                                    var dataArray = dataArray1.filter(function (value, index, arr) {
+                                        return value !== "";
+                                    });
+
+                                    var lastItem = dataArray[dataArray.length - 1].replace(",", "");
+                                    dataArray[dataArray.length - 1] = lastItem;
+                                    var contentAmount = ``;
+                                    for (var i = 0; i < dataArray.length; i++) {
+                                        console.log(dataArray[i]);
+                                        contentAmount += `
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control inputPayable" id="pay${i}" placeholder="name@example.com">
+                                                <label for="pay${i}">${dataArray[i]}</label>
+                                            </div>
+                                        `;
+                                    }
+
+                                    $("#userUID2").text(data.key);
+
+                                    servicesWithFare = services + ", Fare, ";
+
+                                    let fareDistance = parseFloat(val.distance);
+                                    let fareETA = parseFloat(val.eta);
+                                    let fareBase = 10;
+                                    let fareRatePerKm = 2;
+                                    let fareRatePerMin = 2;
+                                    let fare = fareBase + (fareDistance * fareRatePerKm) + (fareETA * fareRatePerMin);
+                                    console.log(fare);
+
+                                    contentAmount += `
+                                            <div class="form-floating mb-3">
+                                                <input disabled value="${fare}" type="number" class="form-control inputPayable" id="pay${dataArray.length}" placeholder="name@example.com">
+                                                <label for="pay${dataArray.length}">Fare</label>
+                                            </div>
+                                        `;
+
+                                    content = `
+                                    <div class="card mb-3">
+                                        <div class="card-body mt-2 pt-2 pb-0">
+                                            <div id="updateDiv">
+                                            <button class="btn btn-primary btn-block mt-2 mb-2" onclick="confirmArrival()">Confirm Arrival</button>
+                                            </div>
+                                            <button class="btn btn-outline-danger btn-block mb-3" onclick="reportUser('${data.key}', '${val.data_userFullname}')">Report User</button>
+
+                                            <p class="mb-0 pb-0">Customer Name</p>
+                                            <h6>${val.data_userFullname}</h6>
+                                            <p class="mb-0 pb-0">Vehicle Type</p>
+                                            <h6>${val.data_vehicleType}</h6>
+                                            <p class="mb-0 pb-0">Service Type</p>
+                                            <h6>${val.data_serviceType}</h6>
+                                            <p class="textToHide" class="mb-0 pb-0" style="margin-bottom: 0px">Distance and ETA</p>
+                                            <h6 class="textToHide" id="distanceAndETA">${val.distance} | ${val.eta}</h6>
+                                            <p class="textToHide" class="mb-0 pb-0">Location</p>
+                                            <div class="textToHide" id="userMap"></div> 
+                                        </div>
+                                    </div>
+                                    `;
+
+                                    cardContent = `
+                                            <p class="mb-0 pb-0">Customer Name</p>
+                                            <h6>${val.data_userFullname}</h6>
+                                            <p class="mb-0 pb-0">Vehicle Type</p>
+                                            <h6>${val.data_vehicleType}</h6>
+                                            <p class="mb-2 pb-0">Service Type</p>
+                                            <div id="allPayables">
+                                                ${contentAmount}
+                                            </div>
+                                            <div class="form-floating mb-3 mt-3">
+                                                <input disabled type="number" class="form-control fw-bold" id="amountCharged" placeholder="name@example.com">
+                                                <label for="amountCharged">Total Amount</label>
+                                            </div>
+                                    `;
+                                    acceptStatus = val.accept;
+                                }
+                            })
+
+                            if (flag == 1) {
+                                getMessages(key);
+                                $("#customerData").html(cardContent);
+                                $("#jobs").html(content);
+
+                                if (acceptStatus == 3) {
+                                    console.log("asd")
+                                    confirmArrival();
+                                }
+
+                                getDistanceAndETA(originLoc, destinationLoc, function (a, b) {
+                                    $("#distanceAndETA").text(`${a} | ${b}`);
+
+                                });
+                            }
+                        }
+                    })
+
+
+
+                    db.ref("location").child(uid).on("value", function (s) {
+                        let val = s.val();
+                        let coord = val.location;
+                        console.log("🚀 ~ file: db-mechanic-ongoing.html:304 ~ coord:", coord)
+                        coord = coord.substring(1, coord.length - 1);
+                        db.ref("requestHire").child(dataKey).update({
+                            data_shopLocation: coord
+                        })
+                    });
+                }
+            });
+        });
+
+        function confirmArrival() {
+            $("#updateDiv").empty();
+            $("#messages").attr("hidden", true);
+            let content = ` <div class="text-center mt-3"><img src="assets/images/svg-loaders/puff.svg" class="mx-auto" style="width: 7rem" alt="audio"></div>
+                            <h6 class="text-danger text-center mt-2">Job Ongoing</h6>
+                            <button class="btn btn-success btn-block  mb-2 mt-2" onclick="jobDone()">Job Done</button>`;
+            $("#updateDiv").append(content);
+            setTimeout(() => {
+                $(".textToHide").empty();
+                $("#userMap").empty();
+            }, 1000);
+            db.ref("requestHire").child(customerUID).update({ accept: 3 });
+        }
+
+
+        // function jobDone() {
+        //     $("#modalJobDone").modal("show");
+        // }
+
+        // async function jobDonePaid() {
+        //     let amountCharged = document.getElementById("amountCharged").value;
+        //     let userUID = document.getElementById("userUID2").innerText;
+        //     if (!amountCharged) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: 'Please input amount paid.',
+        //             showDenyButton: false,
+        //             showCancelButton: false,
+        //             confirmButtonText: 'Okay',
+        //         }).then((result) => {
+        //             console.log("reload");
+        //         })
+        //         return;
+        //     }
+
+        //     let [n_date, n_time] = getDateAndTime();
+
+        //     let data;
+        //     await db.ref("requestHire").child(userUID).once("value", function (s) {
+        //         data = s.val();
+        //     })
+
+        //     await db.ref("requestHire").child(userUID).update({ accept: 4 });
+
+        //     let newpush = await db.ref("jobsDone").push(data);
+        //     let newpushkey = newpush.key;
+
+        //     await db.ref("jobsDone").child(newpushkey).update({
+        //         accept: 4,
+        //         amountCharged: amountCharged,
+        //         date: n_date,
+        //         time: n_time,
+        //         userUID: userUID
+        //     }).then(() => {
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: 'Job Finished!',
+        //             showDenyButton: false,
+        //             showCancelButton: false,
+        //             confirmButtonText: 'Okay',
+        //         }).then((result) => {
+        //             console.log("reload");
+        //             location.href = "db-mechanic.html";
+        //         })
+        //     })
+
+        // }
+
+
+        function jobDone() {
+
+            $("#modalJobDone").modal("show");
+            var myDiv = document.getElementById("allPayables");
+            var myInput = myDiv.querySelectorAll(".inputPayable");
+            myInput.forEach(function (input) {
+                input.addEventListener("input", function () {
+                    var sum = 0;
+                    for (var i = 0; i < myInput.length; i++) {
+                        sum += parseFloat(myInput[i].value);
+                    }
+                    let totalAmount = sum.toFixed(2);
+                    document.getElementById("amountCharged").value = totalAmount;
+                });
+            });
+        }
+
+        async function jobDonePaid() {
+            var myDiv = document.getElementById("allPayables");
+            var myInputs = myDiv.querySelectorAll(".inputPayable");
+
+            let payables = ``;
+
+            var sum = 0;
+            for (var i = 0; i < myInputs.length; i++) {
+                if (myInputs[i].value === "") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Please fill all fields.',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'Okay',
+                    }).then((result) => {
+                        console.log("reload");
+                    })
+                    return;
+
+                }
+                sum += parseFloat(myInputs[i].value);
+                payables += myInputs[i].value + ", ";
+            }
+
+            let totalAmount = sum.toFixed(2);
+            let userUID = document.getElementById("userUID2").innerText;
+            await db.ref("requestHire").child(userUID).update({
+                accept: 4,
+                totalAmount: totalAmount,
+                payables: payables,
+                data_serviceType: servicesWithFare
+            });
+            $("#modalJobDone").modal("hide");
+            $("#modalLoadOnly").modal("show");
+            db.ref("requestHire").child(userUID).on("value", function (s) {
+                let val = s.val();
+                let accept = val.accept;
+                if (accept == 5) {
+                    $("#modalJobDoneFooter").empty();
+                    $("#modalJobDoneFooter").html(`
+                    <button type="button" class="btn btn-success btn-block" onclick="jobDonePaidSubmit()">Mark as Paid</button>
+                    `);
+
+                    $(".inputPayable").prop('disabled', true);
+                    $("#modalLoadOnly").modal("hide");
+                    $("#modalJobDone").modal("show");
+                }
+            })
+        }
+
+        async function jobDonePaidSubmit() {
+            let amountCharged = document.getElementById("amountCharged").value;
+            let userUID = document.getElementById("userUID2").innerText;
+
+            let [n_date, n_time] = getDateAndTime();
+
+            let data;
+            await db.ref("requestHire").child(userUID).once("value", function (s) {
+                data = s.val();
+            })
+
+            await db.ref("requestHire").child(userUID).update({ accept: 6 });
+
+            let newpush = await db.ref("jobsDone").push(data);
+            let newpushkey = newpush.key;
+
+            await db.ref("jobsDone").child(newpushkey).update({
+                accept: 6,
+                date: n_date,
+                time: n_time,
+                userUID: userUID
+            }).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Job Finished!',
+                    showDenyButton: false,
+                    showCancelButton: false,
+                    confirmButtonText: 'Okay',
+                }).then((result) => {
+                    console.log("reload");
+                    db.ref("requestHire").child(userUID).remove();
+                    location.href = "db-mechanic.html";
+                })
+            })
+        }
+
+
+        function reportUser(userUID, customerName) {
+            $("#userUID").text(userUID);
+            $("#customerName").text(customerName);
+            $("#modalReport").modal("show");
+        }
+
+        function submitReport() {
+            let currentDate = new Date();
+            let customerID = document.getElementById("userUID").innerText;
+            let customerName = document.getElementById("customerName").innerText;
+            let complaint = document.getElementById("complaintDetails").value;
+
+            if (complaint) {
+                db.ref("reports").push({
+                    date: currentDate.toLocaleString(),
+                    userReported: customerName,
+                    userReportedID: customerID,
+                    reportedBy: userName,
+                    complain: complaint
+                }).then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Report Submitted',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'Okay',
+                    }).then((result) => {
+                        $("#modalReport").modal("hide");
+                        document.getElementById("complaintDetails").value = "";
+                        console.log("reload");
+                    })
+                })
+            }
+        }
+
+        function getMessages(userUID) {
+            db.ref("messages").child(userUID).on("value", function (s) {
+                let content = `<div class="card mb-3"><div class="card-body mt-2 pt-2 pb-0"><h6 class="mb-3">Messages</h6>`;
+                if (s.exists()) {
+                    $("#messages").empty();
+                    s.forEach(function (data) {
+                        let val = data.val();
+
+                        let message;
+                        if (val.id == "mechanic") {
+                            message = `<div><p class="text-primary fw-bolder mb-0 pb-0">Mechanic:</p><p class="mt-0 pt-0">${val.message}</p></div>`;
+                        } else {
+                            message = `<div><p class="text-success fw-bolder mb-0 pb-0">Customer:</p><p class="mt-0 pt-0">${val.message}</p></div>`;
+                        }
+
+                        content += `${message}`;
+                    })
+                }
+                content += `
+                    <div class="input-group mb-5">
+                    <input type="text" class="form-control" placeholder="Send a message" aria-label="Send a message" aria-describedby="button-addon2" id="messageToSend">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sendMessage('${userUID}')">Send</button>
+                    </div></div></div>`;
+                $("#messages").html(content);
+            })
+        }
+
+        function sendMessage(userUID) {
+            let message = document.getElementById("messageToSend").value;
+            if (message) {
+                db.ref("messages").child(userUID).push({
+                    id: "mechanic",
+                    message: message
+                })
+            }
+        }
+
+        function getDistanceAndETA(originLoc, destinationLoc, callback) {
+            const map = new google.maps.Map(document.getElementById("userMap"), {
+                center: originLoc,
+                zoom: 12,
+            });
+
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            let distance;
+            let time;
+
+            const request = {
+                origin: new google.maps.LatLng(originLoc.lat, originLoc.lng),
+                destination: new google.maps.LatLng(destinationLoc.lat, destinationLoc.lng),
+                travelMode: google.maps.TravelMode.DRIVING,
+            };
+
+            directionsService.route(request, (result, status) => {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(result);
+
+                    distance = result.routes[0].legs[0].distance.text;
+                    time = result.routes[0].legs[0].duration.text;
+
+                    console.log("Distance: " + distance);
+                    console.log("Time: " + time);
+                    callback(distance, time);
+
+                } else {
+                    console.error("Directions request failed: " + status);
+                }
+            });
+
+        }
+
+        function getDateAndTime() {
+            let currentDate = new Date();
+            let formattedDate = currentDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                separator: '-'
+            });
+            let formattedTime = currentDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            });
+            return [formattedDate, formattedTime];
+        }
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6hj0M-1n_cRYO38_5m0Al2hSPAxIHJk4"></script>
+
+</body>
+
+</html>

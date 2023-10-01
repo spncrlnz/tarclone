@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T.A.R. | Download</title>
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+</head>
+
+<body>
+    <div class="row px-5">
+        <div class="col-lg-6 col-md-12 col-sm-12 mx-auto mt-5">
+            <div class="text-center">
+                <div class="card shadow-lg">
+                    <div class="card-body text-center">
+                        <img src="assets/logo.png" class="mb-2 img-fluid" style="width: auto; max-height: 400px;">
+                        <h1 style="font-weight: 900;">Tap and Repair</h1>
+                        <button class="fw-bold btn icon icon-left btn-primary mt-3 mb-3 py-3 btn-block"
+                            style="font-size: 17pt;" onclick="downloadApp()">
+                            <i class="bi bi-download px-1"></i>
+                            Download
+                        </button>
+                        <hr>
+                        <h6 style="font-weight: 900;">Are you a Shop Owner, Mechanic, or Customer?</h6>
+                        <button class="btn btn-success px-5 fw-bold py-3 mt-2 w-100" style="font-size: 17pt;"
+                            onclick="location.href='login.html'">Join Now!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function downloadApp() {
+            location.href = "https://firebasestorage.googleapis.com/v0/b/tapandrepair-online.appspot.com/o/app%2FTAR_v1.apk?alt=media&token=00167fd3-9146-4ff4-a4cf-bcf2b4a981b8";
+        }
+    </script>
+</body>
+</html>

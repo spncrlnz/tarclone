@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "531475628882",
+    "firebase_url": "https://tapandrepair-online-default-rtdb.firebaseio.com",
+    "project_id": "tapandrepair-online",
+    "storage_bucket": "tapandrepair-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531475628882:android:ec4cf34f8c0df4f801b08b",
+        "android_client_info": {
+          "package_name": "com.tar.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531475628882-pt5sgjqb0ktgqu4qpjeivcf509dtnk0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT960FZhCUADif6_VEEmkOaRQ5Md2rBnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531475628882-pt5sgjqb0ktgqu4qpjeivcf509dtnk0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

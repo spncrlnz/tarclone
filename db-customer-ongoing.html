@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAR | dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/main/app-dark.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+</head>
+<style>
+    #userMap {
+        height: 500px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body class="theme-light">
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active" style="box-shadow: 0px 0px 40px rgb(237, 237, 237);">
+                <div class="sidebar-header position-relative">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="appr-shopowner.html"><img src="assets/logo.png"
+                                    style="width: auto; height: 80px; max-height: 120px;" alt="Logo"
+                                    srcset="">&nbsp;TAR</a>
+                        </div>
+                        <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+                            <svg hidden xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
+                                height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
+                                <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2"
+                                        opacity=".3"></path>
+                                    <g transform="translate(-210 -1)">
+                                        <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+                                        <circle cx="220.5" cy="11.5" r="4"></circle>
+                                        <path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                            <div class="form-check form-switch fs-6" hidden>
+                                <input class="form-check-input  me-0" type="checkbox" id="toggle-dark">
+                                <label class="form-check-label"></label>
+                            </div>
+                            <svg hidden xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--mdi" width="20" height="20"
+                                preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="sidebar-toggler  x">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <hr />
+                        <li class="sidebar-title">Menu</li>
+                        <li class="sidebar-item active">
+                            <a href="db-customer-ongoing.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="page-heading">
+                <div class="page-title">
+                </div>
+                <section class="section mt-3">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
+
+                                    <div id="rate" hidden>
+                                        <style>
+                                            .rating {
+                                                display: flex;
+                                                flex-direction: row-reverse;
+                                                justify-content: center;
+                                            }
+
+                                            .rating input {
+                                                display: none;
+                                            }
+
+                                            .rating label {
+                                                cursor: pointer;
+                                                width: 2.5em;
+                                                height: 2.5em;
+                                                margin: 0 0.25em;
+                                                background-color: transparent;
+                                                border: none;
+                                            }
+
+                                            .rating label:before {
+                                                content: '\2605';
+                                                display: block;
+                                                text-align: center;
+                                                line-height: 2.5em;
+                                                font-size: 2.5em;
+                                                color: #ccc;
+                                            }
+
+                                            .rating input:checked~label:before {
+                                                color: #ffdd00;
+                                            }
+                                        </style>
+                                        <h4 class="text-center mt-3 text-success">Repair/Job has been finished!</h4>
+                                        <div class="rating mb-3">
+                                            <input type="radio" id="star5" name="rating" value="5" />
+                                            <label for="star5"></label>
+                                            <input type="radio" id="star4" name="rating" value="4" />
+                                            <label for="star4"></label>
+                                            <input type="radio" id="star3" name="rating" value="3" />
+                                            <label for="star3"></label>
+                                            <input type="radio" id="star2" name="rating" value="2" />
+                                            <label for="star2"></label>
+                                            <input type="radio" id="star1" name="rating" value="1" />
+                                            <label for="star1"></label>
+                                        </div>
+                                        <button class="btn btn-success btn-block mt-5"
+                                            onclick="jobDone()">Submit</button>
+                                    </div>
+
+
+                                    <div id="updateDiv"></div>
+                                    <button class="btn btn-outline-danger btn-block mb-3 mt-2"
+                                        onclick="reportUser()">Report
+                                        User</button>
+
+                                    <div id="distanceAndETA" class="mb-2"></div>
+                                    <div id="userMap"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="messages"></div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLoader" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div id="modalBodyLoader" class="text-center">
+                        <img src="assets/images/svg-loaders/oval.svg" class="mt-4 mb-4" style="width: 5rem" alt="audio">
+                        <p>Please wait</p>
+                    </div>
+                    <div id="modalAvailableProvider"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalReport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Send a Report</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="userUID" hidden></p>
+                    <p class="mb-0 mt-0 pb-0">Name:</p>
+                    <h6 id="customerName"></h6>
+                    <div class="form-floating mt-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="complaintDetails"
+                            style="height: 100px"></textarea>
+                        <label for="complaintDetails">Report Details</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReport()">Submit Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalReceipt" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Receipt</h5>
+                </div>
+                <div class="modal-body" id="receiptBody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-block" onclick="submitReceipt()">Mark as
+                        Paid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="js/config.js"></script>
+    <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        var uid;
+        var data_vehicleType, data_serviceType = "", data_userFullname, data_userLocation, data_shopLocation, data_distance, data_ETA;
+        var db = firebase.database();
+        var messagesFlag = 0;
+
+        var keyToReport, shopToReport;
+        var ratingValue;
+        var userName;
+        var contentForReceipt = ``;
+
+        var showArrival = 0;
+
+        $(document).ready(function () {
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    uid = user.uid;
+                    setTimeout(() => {
+                        db.ref("users").child(uid).once("value", function (s) {
+                            let val = s.val();
+                            userName = val.fullname;
+                        })
+                        updateMap();
+                    }, 500);
+                }
+            });
+
+            const ratingInputs = document.querySelectorAll('.rating input');
+            ratingInputs.forEach(input => {
+                input.addEventListener('click', () => {
+                    console.log(input.value);
+                    ratingValue = input.value;
+                });
+            });
+
+        });
+
+        function showJobDone() {
+            $("#rate").attr("hidden", false);
+            $("#distanceAndETA").attr("hidden", true);
+            $("#userMap").attr("hidden", true);
+            $("#messages").attr("hidden", true);
+            $("#updateDiv").attr("hidden", true);
+        }
+
+        async function jobDone() {
+            if (ratingValue) {
+                await db.ref("users").child(keyToReport).once("value", function (s) {
+                    let val = s.val();
+                    let currentRating = val.rating;
+
+                    /*
+                        const numberOfRatings = 30;
+                        const oldAverage = 4.5;
+                        const newRating = 5;
+                        const newAverage = ((oldAverage * numberOfRatings) + newRating) / (numberOfRatings + 1);
+                        console.log(newAverage); // Output: 4.54
+                    */
+
+                    let newRating;
+                    if (currentRating) {
+                        newRating = ((((parseFloat(currentRating)) * 30) + parseFloat(ratingValue)) / 31);
+                        newRating = newRating.toFixed(2);
+                    } else {
+                        newRating = ratingValue;
+                    }
+
+                    console.log(newRating);
+
+                    if (parseFloat(newRating) > 5) {
+                        newRating = 5;
+                    }
+
+                    db.ref("users").child(keyToReport).update({ rating: newRating }).then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thank you!',
+                            text: 'Have a safe trip.',
+                            showDenyButton: false,
+                            showCancelButton: false,
+                            confirmButtonText: 'Okay',
+                        }).then((result) => {
+                            db.ref("messages").child(uid).remove();
+                            location.href = "db-customer.html";
+                        })
+                    })
+                })
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Please rate the service!',
+                    showDenyButton: false,
+                    showCancelButton: false,
+                    confirmButtonText: 'Okay',
+                }).then((result) => {
+                    console.log("reload");
+                })
+            }
+        }
+
+        async function showReceipt() {
+            await db.ref("requestHire").child(uid).once("value", function (s) {
+                if (s.exists()) {
+                    let val = s.val();
+                    let content = ``;
+
+                    let services = val.data_serviceType;
+                    var dataArray1 = services.split(", ");
+                    var dataArray = dataArray1.filter(function (value, index, arr) {
+                        return value !== "";
+                    });
+                    var lastItem = dataArray[dataArray.length - 1].replace(",", "");
+                    dataArray[dataArray.length - 1] = lastItem;
+
+                    let servicesPay = val.payables;
+                    var dataArray11 = servicesPay.split(", ");
+                    var dataArray2 = dataArray11.filter(function (value, index, arr) {
+                        return value !== "";
+                    });
+                    var lastItem2 = dataArray2[dataArray2.length - 1].replace(",", "");
+                    dataArray2[dataArray2.length - 1] = lastItem2;
+
+                    var contentAmount = ``;
+                    for (var i = 0; i < dataArray.length; i++) {
+                        contentAmount += `
+                            <div class="form-floating mb-3">
+                                <input disabled type="number" class="form-control inputPayable" id="pay${i}" value="${dataArray2[i]}" placeholder="name@example.com">
+                                <label for="pay${i}">${dataArray[i]}</label>
+                            </div>
+                        `;
+                    }
+
+                    content += `
+                        <label class="mt-3">Name</label>
+                        <h6>${val.data_shopName}</h6>
+
+                        <label>Customer Name</label>
+                        <h6>${val.data_userFullname}</h6>
+
+                        <label>Vehicle Type: </label>
+                        <h6>${val.data_vehicleType}</h6>
+                        <hr/>
+                        ${contentAmount}
+                        <hr/>
+                        <div class="form-floating mb-3">
+                                <input disabled type="number" class="form-control fw-bold" id="totalAmount" value="${val.totalAmount}" placeholder="name@example.com">
+                                <label for="totalAmount">Total Amount</label>
+                        </div>
+                    `;
+
+                    contentForReceipt = content;
+                    $("#receiptBody").html(content);
+                    $("#modalReceipt").modal("show");
+                }
+            })
+        }
+
+        async function submitReceipt() {
+            await db.ref("requestHire").child(uid).update({
+                accept: 5
+            })
+            $("#rate").append(contentForReceipt);
+            $("#modalReceipt").modal("hide");
+        }
+
+        async function updateMap() {
+            let originLoc, destinationLoc;
+            // get my location from the app
+            await db.ref("location").child(uid).on("value", function (s) {
+                let val = s.val();
+                let coord = val.location;
+                coord = coord.substring(1, coord.length - 1);
+                db.ref("requestHire").child(uid).update({
+                    userLocation: coord
+                })
+            });
+
+            await db.ref("requestHire").child(uid).on("value", function (s) {
+                if (s.exists()) {
+                    let val = s.val();
+
+                    keyToReport = val.shopUID;
+                    shopToReport = val.data_shopName;
+                    $("#userUID").text(keyToReport);
+                    $("#customerName").text(shopToReport);
+
+                    if (val.accept == 3) {
+                        if (showArrival == 0) {
+                            arrivalConfirmed();
+                            showArrival = 1;
+                        }
+                    } else if (val.accept == 4) {
+                        showReceipt();
+                    } else if (val.accept == 5) {
+                        showJobDone();
+                    }
+
+                    /**********************/
+                    /** LOCATION PARSING **/
+
+                    let a = val.data_userLocation;
+                    let b = val.data_shopLocation;
+
+                    let coordSplitA = a.split(',');
+                    originLoc = {
+                        lat: parseFloat(coordSplitA[0]),
+                        lng: parseFloat(coordSplitA[1])
+                    }
+
+                    let coordSplitB = b.split(',');
+                    destinationLoc = {
+                        lat: parseFloat(coordSplitB[0]),
+                        lng: parseFloat(coordSplitB[1])
+                    }
+
+                    if (messagesFlag == 0) {
+                        getMessages(uid);
+                        messagesFlag = 1;
+                    }
+
+                    getDistanceAndETA(originLoc, destinationLoc, function (a, b) {
+                        $("#distanceAndETA").html(`<p class="textToHide" class="mb-0 pb-0" style="margin-bottom: 0px">Distance and ETA</p><h6 class="textToHide" id="distanceAndETA">${a} | ${b}</h6>`);
+                        console.log("map loaded");
+                    });
+                }
+            })
+        }
+
+        function arrivalConfirmed() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Arrival Confirmed!',
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'Confirm Arrival',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("confirm arrival");
+                    let content = `<div class="text-center mt-3"><img src="assets/images/svg-loaders/puff.svg" class="mx-auto" style="width: 7rem" alt="audio"></div>
+                            <h6 class="text-danger text-center mt-2">Job Ongoing</h6>`;
+                    $("#updateDiv").html(content);
+                    $("#userMap").attr("hidden", true);
+                    $("#distanceAndETA").attr("hidden", true);
+                    $("#messages").attr("hidden", true);
+                }
+            })
+        }
+
+        function getMessages(userUID) {
+            db.ref("messages").child(userUID).on("value", function (s) {
+                let content = `<div class="card mb-3 mt-3"><div class="card-body mt-2 pt-2 pb-0"><h6 class="mb-3">Messages</h6>`;
+                if (s.exists()) {
+                    $("#messages").empty();
+                    s.forEach(function (data) {
+                        let val = data.val();
+
+                        let message;
+                        if (val.id == "shopowner") {
+                            message = `<div><p class="text-primary fw-bolder mb-0 pb-0">Shop:</p><p class="mt-0 pt-0">${val.message}</p></div>`;
+                        } else if (val.id == "mechanic") {
+                            message = `<div><p class="text-primary fw-bolder mb-0 pb-0">Mechanic:</p><p class="mt-0 pt-0">${val.message}</p></div>`;
+                        } else {
+                            message = `<div><p class="text-success fw-bolder mb-0 pb-0">Customer:</p><p class="mt-0 pt-0">${val.message}</p></div>`;
+                        }
+
+                        content += `${message}`;
+                    })
+                }
+                content += `
+                    <div class="input-group mb-5">
+                    <input type="text" class="form-control" placeholder="Send a message" aria-label="Send a message" aria-describedby="button-addon2" id="messageToSend">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="sendMessage('${uid}')">Send</button>
+                    </div></div></div>`;
+                $("#messages").html(content);
+            })
+        }
+
+        function sendMessage(userUID) {
+            let message = document.getElementById("messageToSend").value;
+            if (message) {
+                db.ref("messages").child(userUID).push({
+                    id: "customer",
+                    message: message
+                })
+            }
+        }
+
+        function reportUser() {
+            $("#modalReport").modal("show");
+        }
+
+        function submitReport() {
+            let currentDate = new Date();
+            let customerID = document.getElementById("userUID").innerText;
+            let customerName = document.getElementById("customerName").innerText;
+            let complaint = document.getElementById("complaintDetails").value;
+
+            if (complaint) {
+                db.ref("reports").push({
+                    date: currentDate.toLocaleString(),
+                    userReported: customerName,
+                    userReportedID: customerID,
+                    reportedBy: userName,
+                    complain: complaint
+                }).then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Report Submitted',
+                        showDenyButton: false,
+                        showCancelButton: false,
+                        confirmButtonText: 'Okay',
+                    }).then((result) => {
+                        $("#modalReport").modal("hide");
+                        document.getElementById("complaintDetails").value = "";
+                        console.log("reload");
+                    })
+                })
+            }
+        }
+
+        function registerCatch(message) {
+            Swal.fire({
+                icon: 'error',
+                title: `${message}`,
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'Okay',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("reload");
+                }
+            })
+        }
+
+        function getDateAndTime() {
+            let currentDate = new Date();
+            let formattedDate = currentDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                separator: '-'
+            });
+            let formattedTime = currentDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            });
+            return [formattedDate, formattedTime];
+        }
+
+        // function getDistanceAndETA(originLoc, destinationLoc, callback) {
+        //     const map = new google.maps.Map(document.getElementById("userMap"), {
+        //         center: originLoc,
+        //         zoom: 10,
+        //     });
+        //     const directionsService = new google.maps.DirectionsService();
+        //     const directionsRenderer = new google.maps.DirectionsRenderer();
+        //     directionsRenderer.setMap(map);
+        //     let distance;
+        //     let time;
+        //     const request = {
+        //         origin: new google.maps.LatLng(originLoc.lat, originLoc.lng),
+        //         destination: new google.maps.LatLng(destinationLoc.lat, destinationLoc.lng),
+        //         travelMode: google.maps.TravelMode.DRIVING,
+        //     };
+        //     directionsService.route(request, (result, status) => {
+        //         if (status == google.maps.DirectionsStatus.OK) {
+        //             directionsRenderer.setDirections(result);
+        //             distance = result.routes[0].legs[0].distance.text;
+        //             time = result.routes[0].legs[0].duration.text;
+        //             console.log("Distance: " + distance);
+        //             console.log("Time: " + time);
+        //             callback(distance, time);
+        //         } else {
+        //             console.error("Directions request failed: " + status);
+        //         }
+        //     });
+        // }
+
+        function getDistanceAndETA(originLoc, destinationLoc, callback) {
+            const map = new google.maps.Map(document.getElementById("userMap"));
+            var marker = new google.maps.Marker({
+                position: originLoc,
+                map: map
+            });
+            var directionsService = new google.maps.DirectionsService();
+            var directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+            directionsService.route({
+                origin: originLoc,
+                destination: destinationLoc,
+                travelMode: 'DRIVING'
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                    var newLocation = response.routes[0].legs[0].end_location;
+                    marker.setPosition(newLocation);
+
+                    let distance = response.routes[0].legs[0].distance.text;
+                    let time = response.routes[0].legs[0].duration.text;
+                    console.log("Distance: " + distance);
+                    console.log("Time: " + time);
+                    callback(distance, time);
+                } else {
+                    console.error("Directions request failed: " + status);
+                }
+            });
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6hj0M-1n_cRYO38_5m0Al2hSPAxIHJk4"></script>
+</body>
+
+</html>

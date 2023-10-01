@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        var data = "General Service (P1200-P1500), Bolts and Pedals Safety Check (P200-P500), Wheel Alignment (P200-P500),";
+        var dataArray = data.split(", ");
+
+        var lastItem = dataArray[dataArray.length - 1].replace(",", "");
+        dataArray[dataArray.length - 1] = lastItem;
+        console.log(dataArray);
+        var contentAmount;
+        for (var i = 0; i < dataArray.length; i++) {
+            console.log(dataArray[i]);
+            contentAmount += `
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="pay${i}" placeholder="name@example.com">
+                    <label for="pay${i}">dataArray[i]</label>
+                </div>
+            `;
+        }
+
+        console.log(contentAmount)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAR | Register</title>
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/pages/auth.css">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+    <link rel="stylesheet" href="assets/extensions/sweetalert2/sweetalert2.min.css">
+</head>
+
+<style>
+    .btn-loading {
+        pointer-events: none;
+    }
+
+    .btn-loading:after {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin: -0.25em 0 0 0.25em;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spinner 1s linear infinite;
+    }
+
+    @keyframes spinner {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div id="auth">
+        <div class="row h-100">
+            <div class="col-lg-5 col-12">
+                <div id="auth-left" class="text-center">
+                    <a href="index.html"><img src="assets/logo.png" alt="Logo" class="mb-3 mt-0"
+                            style="width: auto; max-height: 200px;"></a>
+                    <h1>Tap & Repair</h1>
+                    <p class="auth-subtitle mb-3">Register an Account</p>
+
+                    <form>
+                        <select onchange="userTypeOption()" class="form-select py-3 mb-3" id="userType"
+                            style="font-size: 1.2rem;">
+                            <option value="0" selected>Select user type</option>
+                            <option value="shopowner">Shop Owner</option>
+                            <option value="mechanic">Mechanic</option>
+                            <option value="customer">Customer</option>
+                        </select>
+
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_email" type="text" class="form-control form-control-xl" placeholder="Email">
+                            <div class="form-control-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_fullname" type="text" class="form-control form-control-xl"
+                                placeholder="Full Name">
+                            <div class="form-control-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_number" type="number" class="form-control form-control-xl"
+                                placeholder="Contact Number">
+                            <div class="form-control-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_password" type="password" class="form-control form-control-xl"
+                                placeholder="Password">
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-3">
+                            <input id="in_passwordConfirm" type="password" class="form-control form-control-xl"
+                                placeholder="Confirm Password">
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="inclusions" class="mt-3 text-start"></div>
+                    <hr>
+                    <div>
+                        <div class="row mb-3">
+                            <div class="form-check mx-auto  text-start">
+                                <input class="form-check-input" type="checkbox" value="" id="termsCheckbox">
+                                <label class="form-check-label" for="flexCheckDefault" style="font-weight: 800">
+                                    I Agree to the Terms and Conditions
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button id="btnRegister" class="btn btn-success btn-block btn-lg shadow-lg mb-3"
+                                onclick="register()" disabled>Register
+                            </button>
+                            <button class="btn btn-outline-success mb-3" onclick="viewTermsOfUse()">View Terms of Use</button>
+                            <button class="btn btn-outline-success mb-3" onclick="viewDataPrivacy()">View Data Policy</button>
+                            <p style="font-size:10pt">
+                                By clicking Register, you agree to T.A.R.'s Terms of Use and that you have read our Data Privacy Policy. 
+                                You may receive E-Mail Notifications from Tap and Repair and can opt out any time.
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h6>Already have an account?</h6>
+                        <button class="btn btn-primary btn-block btn-lg shadow-lg"
+                            onclick="location.href='login.html'">Log-In
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Get Shop Location Instructions</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>
+                            Open <a href="https://www.google.com/maps" target="_blank">Google Maps</a>.<br />
+                        </li>
+                        <li>
+                            Find your SHOP LOCATION on the map and place a marker on it. Make sure to hold press/click
+                            on the location so the marker appears.
+                        </li>
+                        <li>
+                            When the marker appears, you can now proceed to press/click the marker and
+                            find the coordinates (Example of coordinates: 17.554193,120.014470) and copy it.<br />
+                            <label class="mt-2">Google Maps Browser: </label>
+                            <img src="assets/ss1.png" alt="" class="img-fluid">
+                            <label class="mt-3">Google Maps Mobile Application: </label>
+                            <img src="assets/ss2.png" alt="" class="img-fluid">
+                        </li>
+                        <li class="mt-3">
+                            Go back to this app and paste the copied link on the location input bar.
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="assets/js/bootstrap.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+    <script src="js/config.js"></script>
+    <script src="assets/extensions/toastify-js/src/toastify.js"></script>
+    <script src="assets/extensions/sweetalert2/sweetalert2.all.min.js"></script>
+    <script>
+        var db = firebase.database();
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        var fimg1, fimg2;
+        var userType;
+        var url1 = 0, url2 = 0;
+
+        $(document).ready(function () {
+            // $("input[type='checkbox']").click(function () {
+            //     if ($(this).is(":checked")) {
+            //         $("#btnRegister").attr("disabled", false);
+            //     } else {
+            //         $("#btnRegister").attr("disabled", true);
+            //     }
+            // });
+
+            const div = document.getElementById('inclusions');
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    console.log('inclusions div changed');
+                    setTimeout(() => {
+                        const masterCheckbox = document.getElementById('typeAll');
+                        const checkboxes = document.querySelectorAll('.checkbox');
+                        masterCheckbox.addEventListener('change', function () {
+                            for (let i = 0; i < checkboxes.length; i++) {
+                                checkboxes[i].checked = this.checked;
+                            }
+                        });
+                    }, 1000);
+                });
+            });
+
+            const config = {
+                childList: true,
+                subtree: true
+            };
+
+            observer.observe(div, config);
+
+            const checkbox = document.getElementById('termsCheckbox');
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    $("#btnRegister").attr("disabled", false);
+                } else {
+                    $("#btnRegister").attr("disabled", true);
+                }
+            });
+
+
+        });
+
+        function checkServiceType() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            let serviceType = "";
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    serviceType += (checkboxes[i].value + ",");
+                }
+            }
+            return serviceType;
+        }
+
+        function previewImage(x) {
+            var preview = document.getElementById(x);
+            if (x == "preview1") {
+                var file = fileButton1.files[0];
+            } else if (x == "preview2") {
+                var file = fileButton2.files[0];
+            }
+
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+
+        function viewTermsOfUse() {
+            var termsofuse = 'These Terms and Conditions of Use apply to the Tap and Repair Mobile Application '
+            termsofuse += 'located at tapandrepair-online.web.app.com, and all associated sites linked to tapandrepair-online.web.app.com by Tap and Repair, '
+            termsofuse += 'its subsidiaries and affiliates, including Tap and Repair. The Mobile Application and Website is the property of Tap and Repair Inc. and '
+            termsofuse += 'its licensors. If you do not agree with all of these Legal Terms, then you are expressly prohibited from using Tap and Repair and you must discontinue to use immediately.'
+            
+            Swal.fire({
+                icon: 'info',
+                title: 'Terms of Use',
+                text: termsofuse,
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'Okay',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("Terms of Use, okay.");
+                }
+            })
+        }
+
+        function viewDataPrivacy() {
+            var dataprivacy = "What personal information do we process? When you visit, use or navigate our Services, we may process personal information depending on how you interact with Tap and Repair and the choices you make. "
+            dataprivacy += "Do we process any sensitive personal information? We may process sensitive information when necessary with your consent or as otherwise permitted by applicable law. "
+            dataprivacy += "How do we process your personal information? We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. "
+            dataprivacy += "In what situations and with which parties do we share personal information? We may share information in specific situations and with specific third parties. "
+            dataprivacy += "How do we keep your personal information safe? We have organizational and technical processes and procedures in place to protect your personal information. "
+            dataprivacy += "What are your rights? Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information."
+
+            Swal.fire({
+                icon: 'info',
+                title: 'Data Privacy Policy',
+                text: dataprivacy,
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'Okay',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log("Data privacy, okay.");
+                }
+            })
+        }
+
+
+        function userTypeOption() {
+            userType = $("#userType").val();
+            $("#inclusions").empty();
+
+            var content = ``;
+            if (userType == "mechanic") {
+                content += `
+                    <div class="border p-3 mb-3">
+                        <h6>Select Service Type</h6>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="bicycle" id="typeBicycle">
+                            <label class="form-check-label" for="typeBicycle">
+                                Bicycle
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="motorcycle" id="typeMotor">
+                            <label class="form-check-label" for="typeMotor">
+                                Motorcycle
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="car" id="typeCar">
+                            <label class="form-check-label" for="typeCar">
+                                Car
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="all" id="typeAll">
+                            <label class="form-check-label font-bold" for="typeAll">
+                                Select All
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <h6>Valid ID</h6>
+                    <input type="file" id="fileButton1" class="btn btn-outline-primary btn-lg btn-block mt-1" onchange="previewImage('preview1')" />
+                    <img id="preview1" src="" class="img-fluid border mt-1">
+                    <h6 class="mt-3">Mechanic's Certificate</h6>
+                    <input type="file" id="fileButton2" class="btn btn-outline-primary btn-lg btn-block mt-1" onchange="previewImage('preview2')" />
+                    <img id="preview2" src="" class="img-fluid border mt-1">
+                `;
+
+            } else if (userType == "shopowner") {
+                openInstructions();
+                content += `
+                        <div class="input-group position-relative mb-3">
+                            <input id="in_location" type="text" class="form-control form-control-xl"
+                                placeholder="Location">
+                            <button class="btn btn-secondary" type="button" onclick="openInstructions()">Instructions</button>
+                        </div>
+                        <div class="border p-3 mb-3">
+                        <h6>Select Service Type</h6>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="bicycle" id="typeBicycle">
+                            <label class="form-check-label" for="typeBicycle">
+                                Bicycle
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="motorcycle" id="typeMotor">
+                            <label class="form-check-label" for="typeMotor">
+                                Motorcycle
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="car" id="typeCar">
+                            <label class="form-check-label" for="typeCar">
+                                Car
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input checkbox" type="checkbox" value="all" id="typeAll">
+                            <label class="form-check-label font-bold" for="typeAll">
+                                Select All
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <h6>Valid ID</h6>
+                    <input type="file" id="fileButton1" class="btn btn-outline-primary btn-lg btn-block mt-1" onchange="previewImage('preview1')" />
+                    <img id="preview1" src="" class="img-fluid border mt-1">
+                    <h6 class="mt-3">Business Permit</h6>
+                    <input type="file" id="fileButton2" class="btn btn-outline-primary btn-lg btn-block mt-1" onchange="previewImage('preview2')" />
+                    <img id="preview2" src="" class="img-fluid border mt-1">
+                    `;
+            } else if (userType == "customer") {
+                content += `
+                    <h6>Valid ID</h6>
+                    <input type="file" id="fileButton1" class="btn btn-outline-primary btn-lg btn-block mt-1" onchange="previewImage('preview1')" />
+                    <img id="preview1" src="" class="img-fluid border mt-1">
+                `;
+            }
+            $("#inclusions").append(content);
+        }
+
+        function registerCatch(message) {
+            Swal.fire({
+                icon: 'error',
+                title: `${message}`,
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: 'Okay',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#btnRegister").removeClass("btn-loading").text("Register");
+                    document.getElementById("btnRegister").disabled = false;
+                    console.log("reload");
+                }
+            })
+        }
+
+        function openInstructions() {
+            $("#exampleModal").modal("show");
+        }
+
+        async function uploadFile(email, toUp, img) {
+            const fileInput = document.querySelector(`#${toUp}`);
+            const file = fileInput.files[0];
+            const fileRef = storageRef.child(`${email}/${img}.jpg`);
+            await fileRef.put(file).then(function (snapshot) {
+                console.log('Uploaded a file!');
+                fileRef.getDownloadURL().then(function (url) {
+                    if (img == "img1") {
+                        url1 = url;
+                    } else {
+                        url2 = url;
+                    }
+                });
+            });
+
+        }
+
+        async function register() {
+            $("#btnRegister").addClass("btn-loading").text("");
+            $("#btnRegister").addClass("btn-loading").text("");
+            document.getElementById("btnRegister").disabled = true;
+
+            var selectedServiceType = 0;
+            var shopLocation = 0;
+            var sign_email = document.getElementById("in_email").value;
+            var sign_fullname = document.getElementById("in_fullname").value;
+            var sign_number = document.getElementById("in_number").value;
+            var sign_password = document.getElementById("in_password").value;
+            var sign_passwordconfirm = document.getElementById("in_passwordConfirm").value;
+
+            var files = 0;
+            var img1 = 0; img2 = 0;
+            var emailCheck;
+
+            await db.ref("users").orderByChild("email").equalTo(sign_email).once("value", function (s) {
+                if (s.exists()) {
+                    registerCatch("Email already exists!");
+                } else {
+                    emailCheck = 1;
+                }
+            })
+
+            if (!sign_email || !sign_fullname || !sign_number || !sign_password || !sign_passwordconfirm || !userType) {
+                registerCatch("Please fill all fields.");
+            } else {
+                if (sign_number.length != 11) {
+                    registerCatch("Incorrect contact number format.");
+                }
+
+                if ((sign_password != sign_passwordconfirm)) {
+                    registerCatch("Password does not match.");
+                }
+            }
+
+            if (userType == "shopowner") {
+                shopLocation = document.getElementById("in_location").value;
+                console.log(shopLocation)
+                if ((shopLocation == 0 || !shopLocation)) {
+                    registerCatch("Failed to input Shop Location!");
+                    return;
+                }
+            }
+
+            if (userType == "mechanic" || userType == "shopowner") {
+                selectedServiceType = checkServiceType();
+                console.log(selectedServiceType);
+                if (selectedServiceType.length === 0) {
+                    registerCatch("Please select a service type.");
+                    return;
+                }
+
+                img1 = $('#preview1').attr('src');
+                img2 = $('#preview2').attr('src');
+                if (!img1 || !img2) {
+                    registerCatch("Please upload the needed requirements.");
+                    files = 0;
+                } else {
+                    files = 1;
+                }
+
+            } else if (userType == "customer") {
+                img1 = $('#preview1').attr('src');
+                img2 = 0;
+                if (!img1) {
+                    registerCatch("Please upload the needed requirements.");
+                    files = 0;
+                } else {
+                    files = 1;
+                }
+            }
+
+            if (emailCheck && sign_number.length == 11 && sign_fullname && sign_number && userType && sign_email && sign_password && (sign_password == sign_passwordconfirm) && files) {
+                var [strDate, strTime] = getDateAndTime()
+                var request = `${strDate} ${strTime}`;
+                var uid;
+                var sent;
+
+                if (userType == "mechanic" || userType == "shopowner") {
+                    await uploadFile(sign_email, 'fileButton1', 'img1');
+                    await uploadFile(sign_email, 'fileButton2', 'img2');
+                } else if (userType == "customer") {
+                    await uploadFile(sign_email, 'fileButton1', 'img1');
+                }
+
+                await firebase.auth().createUserWithEmailAndPassword(sign_email, sign_password)
+                    .then(function (userCredential) {
+                        var user = userCredential.user;
+                        uid = user.uid;
+                        user.sendEmailVerification()
+                            .then(function () {
+                                console.log("Verification email sent");
+                                setTimeout(() => {
+                                    db.ref("users").child(uid).set({
+                                        email: sign_email,
+                                        verify: 0,
+                                        img1: url1,
+                                        img2: url2,
+                                        userType: userType,
+                                        fullname: sign_fullname,
+                                        number: sign_number,
+                                        uid: uid,
+                                        request: request,
+                                        location: shopLocation,
+                                        emailVerify: 0,
+                                        password: sign_password,
+                                        serviceType: selectedServiceType
+                                    }).then(() => {
+                                        $("#btnRegister").removeClass("btn-loading").text("Register");
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Email Verification Sent!',
+                                            text: 'Please verify your email. Check your email inbox!',
+                                            showDenyButton: false,
+                                            showCancelButton: false,
+                                            confirmButtonText: 'Okay',
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                location.href = 'login.html';
+                                            }
+                                        })
+                                    }).catch((error) => {
+                                        registerCatch(error);
+                                    })
+                                }, 3000);
+
+                            })
+                            .catch(function (error) {
+                                console.error("Error sending verification email:", error);
+                                alert("App error. Try to restart.");
+                            });
+                    })
+                    .catch(function (error) {
+                        registerCatch(error);
+                    });
+            }
+        }
+
+
+        function getDateAndTime() {
+            let currentDate = new Date();
+            let formattedDate = currentDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                separator: '-'
+            });
+            let formattedTime = currentDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+            });
+            return [formattedDate, formattedTime];
+        }
+    </script>
+
+</body>
+</html>
